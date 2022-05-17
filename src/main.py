@@ -1,5 +1,5 @@
 import click as clk
-from analyzer import readXYZ
+from analyzer import formatXYZ
 
 #TODO: treat clk.option into Testing(); 
 
@@ -39,7 +39,7 @@ def Testing(fname1, fname2):
         for line in second_pointer.strip().split():
             lines2.append(line)
     
-    readXYZ(lines1, lines2)
+    formatXYZ(lines1, lines2)
 
     
 if __name__ == '__main__':
