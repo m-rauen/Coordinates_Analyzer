@@ -2,6 +2,7 @@ import click as clk
 from analyzer import formatXYZ
 
 #TODO: treat clk.option into Testing(); 
+#TODO: options calling functions from 'analyzer.py' 
 
 @clk.command()
 @clk.argument('fname1', type=clk.File('r'))        

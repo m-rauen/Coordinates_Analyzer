@@ -1,7 +1,8 @@
 import numpy as np
-
-#TODO: atomic coordinates -> matrix✅  
+ 
 #TODO: atomic labels -> dictionary❔ 
+#TODO: check if .xyz files have a pattern
+#TODO: code function RMSD() 
 
 def separator(list1 = [], list2 = []): 
     atom1 = []

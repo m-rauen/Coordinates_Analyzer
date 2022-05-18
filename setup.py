@@ -15,7 +15,7 @@ setup(
                         'numpy'],
     entry_points = {
         'console_scripts': [
-            'coords-analyze=src.main:Testing',
+            'coords-analyze=cli.main:Testing',
         ],
     },
 )
