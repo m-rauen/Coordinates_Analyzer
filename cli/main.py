@@ -14,9 +14,9 @@ from src.analyzer import RMSD, Kabsch, full
 #if the options are implemented here, then it don't run 
 #I believe that I have to declare the options in the Testinbg() function
 
-@clk.option('--full', nargs=2, type=clk.File(), help='Run and print full calculation (RMSD + Kabsch)')
-@clk.option('--rmsd', nargs=2, type=clk.File(), help='Run  and print only RMSD calculation')
-@clk.option('--kabsch', nargs=2, type=clk.File(), help='Run and print only Kabsch calculation')
+@clk.option('--full', nargs=2, help='Run and print full calculation (RMSD + Kabsch)')
+@clk.option('--rmsd', nargs=2, help='Run  and print only RMSD calculation')
+@clk.option('--kabsch', nargs=2, help='Run and print only Kabsch calculation')
 #⚠ 
 
 def inputFiles(fname1, fname2, rmsd, kabsch, full): 
