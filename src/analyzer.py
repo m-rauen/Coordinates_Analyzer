@@ -1,7 +1,7 @@
 import numpy as np
  
-#TODO: atomic labels -> dictionary❔ 
-#TODO: check if .xyz files have a pattern
+#TODO: atomic labels -> dictionary 
+#TODO: check if .xyz files have a pattern✅ 
 #TODO: code function RMSD() 
 
 def separator(list1 = [], list2 = []): 
@@ -22,23 +22,14 @@ def separator(list1 = [], list2 = []):
         elif atoms2_pointer.isalpha() == False:
             coord2.append(atoms2_pointer)
      
-    # print(atoms1, coords1)
-    # print('\n')        
-    # print(atoms2, coords2)
+    
     return atom1, coord1, atom2, coord2
 
 def formatXYZ(arr1 = [], arr2 = []):
     #Receive array w/ atoms and array w/ coordinates 
     atoms1, coords1, atoms2, coords2 = separator(arr1, arr2)
     
-    #Convert atomic coordinates do float
-    # coords1 = [float(x) for x in coords1]
-    # coords2 = [float(x) for x in coords2]
-    # print(coords1)
-    # print('\n')
-    # print(coords2)
-    
-    #Convert to float and transform array -> matrix 
+    #Convert to float and transform array to matrix 
     mtx1 = np.array(coords1, dtype='float64')
     mtx2 = np.array(coords2, dtype='float64')
     matrix1 = np.asmatrix(mtx1)
@@ -52,7 +43,8 @@ def formatXYZ(arr1 = [], arr2 = []):
     matrix1 = mtx1.reshape(shape_mtx1)
     matrix2 = mtx2.reshape(shape_mtx2)
     
-    #Testing calculations 
+    #Create an empty matrix is necessary for proceed w/ the calculations 
+    #Since Kabsch returns a matrix (rotational matrix), we need to have and empty matrix to acomodate the results being passed
     result = np.zeros((len(matrix1),3))
     
     for i in range(len(matrix1)):
@@ -60,7 +52,33 @@ def formatXYZ(arr1 = [], arr2 = []):
             result[i][j] = matrix1[i][j] + matrix2[i][j]
             
     print(result) 
-        
+    
+def RMSD(matrix1, matrix2): 
+    result = np.zeros((len(matrix1),3))
+    
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[0])):
+            result[i][j] = matrix1[i][j] + matrix2[i][j]
+            
+    print(result)
+    
+def Kabsch(matrix1, matrix2): 
+    result = np.zeros((len(matrix1),3))
+    
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[0])):
+            result[i][j] = matrix1[i][j] + matrix2[i][j]
+            
+    print(result)
+    
+def full(matrix1, matrix2): 
+    result = np.zeros((len(matrix1),3))
+    
+    for i in range(len(matrix1)):
+        for j in range(len(matrix1[0])):
+            result[i][j] = matrix1[i][j] + matrix2[i][j]
+            
+    print(result)
         
        
     
