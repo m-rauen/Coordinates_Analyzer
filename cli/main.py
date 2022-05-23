@@ -1,29 +1,23 @@
 import click as clk
 import numpy as np
-from src.analyzer import RMSD, Kabsch, full
+from src.analyzer import RMSD, Kabsch, fullCalculation
 
-#TODO: treat clk.option into Testing(); 
-#TODO: options calling functions from 'analyzer.py' 
+#TODO: treat clk.option into inputFiles();✅ 
+#TODO: options calling functions from 'analyzer.py'✅ 
 
 @clk.command()
 @clk.argument('fname1', type=clk.File('r'))        
 @clk.argument('fname2', type=clk.File('r'))
-
-#⚠ 
-#if the options are comments, then, it runs normally
-#if the options are implemented here, then it don't run 
-#I believe that I have to declare the options in the Testinbg() function
-
-@clk.option('--full', nargs=2, help='Run and print full calculation (RMSD + Kabsch)')
-@clk.option('--rmsd', nargs=2, help='Run  and print only RMSD calculation')
-@clk.option('--kabsch', nargs=2, help='Run and print only Kabsch calculation')
-#⚠ 
-
+@clk.option('--full', is_flag=True, help='Run and print full calculation (RMSD + Kabsch)', default=True)
+@clk.option('--rmsd',is_flag=True, help='Run  and print only RMSD calculation', default=False)
+@clk.option('--kabsch', is_flag=True, help='Run and print only Kabsch calculation', default=False)
 def inputFiles(fname1, fname2, rmsd, kabsch, full): 
     """
     COORDINATES ANALYZER\n
 
-    Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.
+    Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.\n
+    
+    By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm, however, you can specify the type of calculation using the options.
    
     * Mathematical Methods *
     
@@ -44,9 +38,10 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
-        full(f_matrix1, f_matrix2)
+        fullCalculation(f_matrix1, f_matrix2)
         
 def treatEntry(filename1, filename2):
+    #Treat lines (separate) of both arrays
     lines1 = [] 
     lines2 = []
     for first_pointer in filename1:
@@ -57,10 +52,11 @@ def treatEntry(filename1, filename2):
         for line in second_pointer.strip().split():
             lines2.append(line)
 
-    #separator(lines1, lines2)
     return lines1, lines2
 
 def separator(list1 = [], list2 = []): 
+    #Distinguish atoms from coordinates in both separated arrays
+    #Create a list for atoms, and, a list for atomic coordinates
     atom1 = []
     atom2 = []
     coord1 = []
@@ -78,14 +74,10 @@ def separator(list1 = [], list2 = []):
         elif atoms2_pointer.isalpha() == False:
             coord2.append(atoms2_pointer)
      
-    #formatXYZ(coord1, coord2)
     return atom1, coord1, atom2, coord2
 
 
 def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
-    #Receive array w/ atoms and array w/ coordinates 
-    #atoms1, coords1, atoms2, coords2 = separator(arr1, arr2)
-    
     #Convert to float and transform array to matrix 
     mtx1 = np.array(arr_coords1, dtype='float64')
     mtx2 = np.array(arr_coords2, dtype='float64')
@@ -102,15 +94,6 @@ def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = 
     
     return matrix1, matrix2
     
-    #Create an empty matrix is necessary for proceed w/ the calculations 
-    #Since Kabsch returns a matrix (rotational matrix), we need to have and empty matrix to acomodate the results being passed
-    # result = np.zeros((len(matrix1),3))
-    
-    # for i in range(len(matrix1)):
-    #     for j in range(len(matrix1[0])):
-    #         result[i][j] = matrix1[i][j] + matrix2[i][j]
-            
-    # print(result)
 
 if __name__ == '__main__':
     inputFiles() 
