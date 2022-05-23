@@ -42,6 +42,8 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+.hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -52,6 +54,18 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # .xyz files 
 *.xyz 
