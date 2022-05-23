@@ -1,9 +1,11 @@
 import numpy as np
  
-#TODO: atomic labels -> dictionary❔  
-#TODO: code function RMSD() 
-    
-def RMSD(matrix1, matrix2): 
+#TODO: atomic labels -> dictionary;❔
+#TODO: code function calculateRMSD();
+#TODO: code function calculateKabsch();
+#TODO: join RMSD and Kabsch into fullCalculation();
+
+def calculateRMSD(matrix1, matrix2): 
     result = np.zeros((len(matrix1),3))
     
     for i in range(len(matrix1)):
@@ -12,7 +14,7 @@ def RMSD(matrix1, matrix2):
             
     print(result)
     
-def Kabsch(matrix1, matrix2): 
+def calculateKabsch(matrix1, matrix2): 
     result = np.zeros((len(matrix1),3))
     
     for i in range(len(matrix1)):

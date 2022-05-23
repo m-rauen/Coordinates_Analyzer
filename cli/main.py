@@ -1,9 +1,10 @@
 import click as clk
 import numpy as np
-from src.analyzer import RMSD, Kabsch, fullCalculation
+from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
-#TODO: treat clk.option into inputFiles();✅ 
-#TODO: options calling functions from 'analyzer.py'✅ 
+#TODO: create outputResults() function; 
+#TODO: format text into the outputResults() function; 
+#TODO: make inputFiles() text prettier; 
 
 @clk.command()
 @clk.argument('fname1', type=clk.File('r'))        
@@ -28,12 +29,12 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
-        RMSD(f_matrix1, f_matrix2)
+        calculateRMSD(f_matrix1, f_matrix2)
     elif kabsch:
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
-        Kabsch(f_matrix1, f_matrix2)
+        calculateKabsch(f_matrix1, f_matrix2)
     elif full: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
