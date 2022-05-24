@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name = 'coordinates-analyzer',
-    version = '1.1.0',
+    version = '1.2.0',
     description = 'A Python CLI program that mathematically compare 2 different molecular structures (.xyz file), based on their atomic coordinates.',
     long_description = './README.md',
     license = './LICENSE',
@@ -12,7 +12,8 @@ setup(
     url='https://https://github.com/m-rauen',
     packages = find_packages(),
     install_requires = ['Click',
-                        'numpy'],
+                        'numpy',
+                        'sklearn'],
     entry_points = {
         'console_scripts': [
             'coords-analyze=cli.main:inputFiles',

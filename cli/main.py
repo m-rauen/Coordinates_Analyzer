@@ -1,17 +1,15 @@
-import click as clk
+import click 
 import numpy as np
-from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
+from src.analyzer import calculateRMSD, calculateKabsch
 
-#TODO: create outputResults() function; 
-#TODO: format text into the outputResults() function; 
 #TODO: make inputFiles() text prettier; 
 
-@clk.command()
-@clk.argument('fname1', type=clk.File('r'))        
-@clk.argument('fname2', type=clk.File('r'))
-@clk.option('--full', is_flag=True, help='Run and print full calculation (RMSD + Kabsch)', default=True)
-@clk.option('--rmsd',is_flag=True, help='Run  and print only RMSD calculation', default=False)
-@clk.option('--kabsch', is_flag=True, help='Run and print only Kabsch calculation', default=False)
+@click.command()
+@click.argument('fname1', type=click.File('r'))        
+@click.argument('fname2', type=click.File('r'))
+@click.option('--full', is_flag=True, help='Run and print full calculation (RMSD + Kabsch)', default=True)
+@click.option('--rmsd',is_flag=True, help='Run  and print only RMSD calculation', default=False)
+@click.option('--kabsch', is_flag=True, help='Run and print only Kabsch calculation', default=False)
 def inputFiles(fname1, fname2, rmsd, kabsch, full): 
     """
     COORDINATES ANALYZER\n
@@ -39,8 +37,9 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
-        fullCalculation(f_matrix1, f_matrix2)
-        
+        #fullCalculation(f_matrix1, f_matrix2)
+         
+
 def treatEntry(filename1, filename2):
     #Treat lines (separate) of both arrays
     lines1 = [] 
@@ -76,7 +75,6 @@ def separator(list1 = [], list2 = []):
             coord2.append(atoms2_pointer)
      
     return atom1, coord1, atom2, coord2
-
 
 def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
     #Convert to float and transform array to matrix 
