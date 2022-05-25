@@ -6,20 +6,15 @@ from cli.out import output_singleResult
 #TODO: code function calculateRMSD();✅ 
 #TODO: code function calculateKabsch();
 
+#------------------------------------
+# if teste_de_lista == []:
+#     print('sepa vai dar boa')
+# else:
+#     print('sepa n vai dar boa')
+#------------------------------------
+
 def calculateRMSD(matrix1, matrix2): 
     result = round(mean_squared_error(matrix1, matrix2, squared=False), 4)
-    # result_rmsd = str(result)
-    # if result_rmsd.isnumeric() == True:
-    #     print(result_rmsd)
-    # elif result_rmsd.isnumeric() == False:
-    #     print('bugou')
-    # else: 
-    #     print('caralho qq deu')
-    # teste_de_lista = []
-    # if teste_de_lista == []:
-    #     print('sepa vai dar boa')
-    # else:
-    #     print('sepa n vai dar boa')
     output_singleResult(result)
     
 def calculateKabsch(matrix1, matrix2): 

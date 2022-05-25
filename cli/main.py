@@ -16,7 +16,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
 
     Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.\n
     
-    By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm, however, you can specify the type of calculation using the options.
+    By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm. However, you can specify the type of calculation using the options.
    
     * Mathematical Methods *
     
