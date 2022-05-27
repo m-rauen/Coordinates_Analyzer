@@ -4,7 +4,7 @@ from cli.out import output_singleResult
 
 #TODO: atomic labels -> dictionary;❔
 #TODO: code function calculateRMSD();✅ 
-#TODO: code function calculateKabsch();
+#TODO: code function calculateKabsch(); (offset rotated P ❔❔)
 
 #------------------------------------
 # if teste_de_lista == []:
@@ -31,8 +31,18 @@ def calculateKabsch(matrix_P, matrix_Q):
     
     #Calculate de SVD of the covariance matrix
     matrix_U, matrix_S, matrix_Vh = np.linalg.svd(matrix_H) 
-
-     
+    
+    #Check for right-handed orientantion in the coordinates system
+    #Based on the answer, calculate the proper rotation matrix
+    if np.linalg.det(matrix_Vh * (np.transpose(matrix_U))) < 0: 
+        counter_identitiy = np.array([[1,0,0], [0,1,0], [0,0,-1]])
+        matrix_R = (np.transpose(matrix_U)) * counter_identitiy * matrix_Vh
+    else:   
+        matrix_R = (np.transpose(matrix_U)) * matrix_Vh
+        
+    
+    
+    
     
     
     
