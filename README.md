@@ -7,5 +7,17 @@
 
 :dart: One of the major aspects here it is to be able to tell the major and minimal differences between 2 molecular structures after they have gone through any path. For example, comparing the final molecular geometry, after a optimization process, with the starting one; or, for the bioinformatics, compare 2 protein structures and their equivalence.  
 
+:dart: Considering two sets of atomic coordinates (P and Q): 
+
+- P = coordinates system after *some* process; 
+- Q = coordinates system from *reference*; 
+- align both coordinates systems to the *same* centroid; (**translation process**)
+- calculate the optimal coordinates system between both matrices; (**transposing the reference (*Q*)**)
+- calculate the SVD of the optimal coordinates system; 
+- generate 3 matrices from SVD: 
+    - U = 
+    - S = 
+    - Vt = 
+
 
 
