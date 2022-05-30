@@ -1,17 +1,17 @@
 import numpy as np
 from sklearn.metrics import mean_squared_error
-from cli.out import output_singleResult
+from cli.out import output_onlyRMSD, output_onlyKabsch
 
 #TODO: atomic labels -> dictionary;❔
 #TODO: code function calculateRMSD();✅ 
 #TODO: code function calculateKabsch(); 
 
 def calculateRMSD(matrix_P, matrix_Q): 
-    rmsd = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
-    print(rmsd)
+    result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+    output_onlyRMSD(result)
     
 def calculateKabsch(matrix_P, matrix_Q): 
-    #Calculate centroids to align coordinates in the center
+    #Calculate centroids to align coordinates at the center
     centroid1 = np.mean(matrix_P, axis=0)
     centroid2 = np.mean(matrix_Q, axis=0) 
     
@@ -32,6 +32,13 @@ def calculateKabsch(matrix_P, matrix_Q):
         matrix_R = (np.transpose(matrix_U)) * counter_identitiy * matrix_Vh
     else:   
         matrix_R = (np.transpose(matrix_U)) * matrix_Vh
+        
+    #Finally, calculate the rotated P matrix 
+    rot_matrixP = matrix_R * matrix_P 
+    
+    output_onlyKabsch(matrix_R, rot_matrixP)
+    
+    
         
 
         
