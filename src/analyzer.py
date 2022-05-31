@@ -1,10 +1,11 @@
+from unittest import result
 import numpy as np
 from sklearn.metrics import mean_squared_error
 from cli.out import output_onlyRMSD, output_onlyKabsch
 
 #TODO: atomic labels -> dictionary;❔
 #TODO: code function calculateRMSD();✅ 
-#TODO: code function calculateKabsch(); 
+#TODO: code function calculateKabsch();✅  
 
 def calculateRMSD(matrix_P, matrix_Q): 
     result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
@@ -36,7 +37,20 @@ def calculateKabsch(matrix_P, matrix_Q):
     #Finally, calculate the rotated P matrix 
     rot_matrixP = matrix_R * matrix_P 
     
-    output_onlyKabsch(matrix_R, rot_matrixP)
+    # print('Rotational:\n {} \n\n'
+    #       'P_rotated: \n {}'.format(np.matrix(matrix_R), np.matrix(rot_matrixP)))
+    
+    
+    for i in matrix_R:
+        np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
+        print(i)
+            
+    
+    # print('Rotational: \n {}'
+    #               '{}'.format(result_R))
+
+    
+    # output_onlyKabsch(matrix_R, rot_matrixP)
     
     
         

@@ -37,6 +37,11 @@ def output_onlyKabsch(rotat_mtx, rotat_P_mtx):
     
     click.echo(msg_kabsch, err=True)
     
+    # print('Rotational:\n {} \n\n'
+    #       'P_rotated: \n {}'.format(np.matrix(matrix_R), np.matrix(rot_matrixP)))
+    
+    
+    
     
 
     
