@@ -3,7 +3,8 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 from cli.out import output_onlyRMSD, output_onlyKabsch
 
-#TODO: atomic labels -> dictionary;❔
+#TODO: atomic labels -> dictionary for the final matrices;
+#TODO: calculateRMSD() done by hand, eliminating 1 BIG dependency 
 
 def calculateRMSD(matrix_P, matrix_Q): 
     result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)

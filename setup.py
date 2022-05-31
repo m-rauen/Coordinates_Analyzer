@@ -13,7 +13,8 @@ setup(
     packages = find_packages(),
     install_requires = ['Click',
                         'numpy',
-                        'sklearn'],
+                        'sklearn', 
+                        'rich'],
     entry_points = {
         'console_scripts': [
             'coords-analyze=cli.main:inputFiles',
