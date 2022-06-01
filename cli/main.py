@@ -11,18 +11,18 @@ from src.analyzer import calculateRMSD, calculateKabsch
 @click.option('--rmsd',is_flag=True, help='Run  and print only RMSD calculation', default=False)
 @click.option('--kabsch', is_flag=True, help='Run and print only Kabsch calculation', default=False)
 def inputFiles(fname1, fname2, rmsd, kabsch, full): 
-    """
-    COORDINATES ANALYZER\n
+    # """
+    # COORDINATES ANALYZER\n
 
-    Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.\n
+    # Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.\n
     
-    By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm. However, you can specify the type of calculation using the options.
+    # By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm. However, you can specify the type of calculation using the options.
    
-    * Mathematical Methods *
+    # * Mathematical Methods *
     
-    -> RMSD;\n
-    -> Kabsch algorithm.
-    """
+    # -> RMSD;\n
+    # -> Kabsch algorithm.
+    # """
     if rmsd: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
