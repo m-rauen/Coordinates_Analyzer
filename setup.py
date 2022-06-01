@@ -14,7 +14,8 @@ setup(
     install_requires = ['Click',
                         'numpy',
                         'sklearn', 
-                        'rich'],
+                        'rich',
+                        'rich_click'],
     entry_points = {
         'console_scripts': [
             'coords-analyze=cli.main:inputFiles',

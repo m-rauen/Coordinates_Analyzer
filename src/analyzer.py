@@ -36,15 +36,6 @@ def calculateKabsch(matrix_P, matrix_Q):
     #Finally, calculate the rotated P matrix 
     rot_matrixP = matrix_R * matrix_P 
     
-    # print('Rotational:\n {} \n\n'
-    #       'P_rotated: \n {}'.format(np.matrix(matrix_R), np.matrix(rot_matrixP)))
-    
-    
-    # for i in matrix_R:
-    #     np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
-    #     print(i)
-            
-    
     output_onlyKabsch(matrix_R, rot_matrixP)
     
     
