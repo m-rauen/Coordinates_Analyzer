@@ -69,3 +69,11 @@ venv.bak/
 
 # .xyz files 
 *.xyz 
+
+# Build dir 
+build/ 
+
+# egg-info
+*.egg
+*.egg-info
+

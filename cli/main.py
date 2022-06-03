@@ -1,7 +1,7 @@
 import click 
 import numpy as np
 import rich_click as click 
-from src.analyzer import calculateRMSD, calculateKabsch
+from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
 #TODO: make inputFiles() text prettier; 
 
@@ -11,8 +11,8 @@ click.rich_click.USE_MARKDOWN = True
 @click.argument('fname1', type=click.File('r'))        
 @click.argument('fname2', type=click.File('r'))
 @click.option('--full', is_flag=True, help='Run and print full calculation (RMSD + Kabsch)', default=True)
-@click.option('--rmsd',is_flag=True, help='Run  and print only RMSD calculation', default=False)
-@click.option('--kabsch', is_flag=True, help='Run and print only Kabsch calculation', default=False)
+@click.option('--rmsd',is_flag=True, help='Run and print only RMSD result', default=False)
+@click.option('--kabsch', is_flag=True, help='Run and print only Kabsch algorithm results', default=False)
 def inputFiles(fname1, fname2, rmsd, kabsch, full): 
     """
     # COORDINATES ANALYZER
@@ -25,19 +25,6 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
     > - Root-Mean-Square Deviation;
     > - Kabsch algorithm.
     """
-    
-    # """
-    # COORDINATES ANALYZER\n
-
-    # Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates.\n
-    
-    # By default the program runs the full calculation, i.e. RMSD + Kabsch algorithm. However, you can specify the type of calculation using the options.
-   
-    # * Mathematical Methods *
-    
-    # -> RMSD;\n
-    # -> Kabsch algorithm.
-    # """
     if rmsd: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
@@ -52,7 +39,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
-        #fullCalculation(f_matrix1, f_matrix2)
+        fullCalculation(f_matrix1, f_matrix2)
          
 
 def treatEntry(filename1, filename2):
