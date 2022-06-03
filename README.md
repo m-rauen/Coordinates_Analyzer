@@ -2,6 +2,8 @@
 
 ### :warning: Disclaimer
 
+---
+
 Coordinate_Analyzer is a **(working in progress)** CLI Python program. Soon it will be finished and uploaded do PyPI.
 
 ### :dart: Basic Information  
