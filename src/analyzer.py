@@ -7,8 +7,14 @@ from cli.out import output_onlyRMSD, output_onlyKabsch, output_fullResults
 #TODO: calculateRMSD() done by hand, eliminating 1 BIG dependency 
 
 def calculateRMSD(matrix_P, matrix_Q): 
-    result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
-    output_onlyRMSD(result)
+    if inspect.stack()[1][3] == 'inputFiles':
+        result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+        output_onlyRMSD(result)
+    elif inspect.stack()[1][3] == 'fullCalculation':
+        result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+        return result
+    # else: 
+    #     print('bugou')
 
     
 def calculateKabsch(matrix_P, matrix_Q): 
@@ -68,12 +74,12 @@ def calculateKabsch(matrix_P, matrix_Q):
         
         return matrix_R, rot_matrixP
     
-    else: 
-        print('bugou')
+    # else: 
+    #     print('bugou')
 
     
 def fullCalculation(matrix_P, matrix_Q): 
-    rmsd = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+    rmsd = calculateRMSD(matrix_P, matrix_Q)
     matrix_R, rot_matrixP = calculateKabsch(matrix_P, matrix_Q)
     output_fullResults(rmsd, matrix_R, rot_matrixP)
     
