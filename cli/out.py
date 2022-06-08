@@ -8,12 +8,11 @@ console = Console()
 msg = """
 # COORDINATES ANALYZER
 
-#### Developed by Matheus Rauen
-#### Est. in 2022
 
 Python CLI program that mathematically compare 2 sets of molecular structures, based on their atomic coordinates, throughout the Root-Mean-Square Deviation, and, Kabsch algorithm. 
 
 If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).
+
 
 """
 
@@ -33,20 +32,20 @@ def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
     Matrix P (rotated):
     
     """    
-    fmsg_rmsd = Markdown(msg_rmsd)
+    #fmsg_rmsd = Markdown(msg_rmsd)
     fmsg_rotational = Markdown(msg_rotational)
-    fmsg_rotatedP = Markdown(msg_rotatedP)
+    #fmsg_rotatedP = Markdown(msg_rotatedP)
     
-    console.print(result_msg, soft_wrap=False, justify='left')
+    console.print(result_msg, style='bold white', soft_wrap=False, justify='left')
     console.rule('[bold cyan]Results')
-    console.print(fmsg_rmsd, style='bold white')
-    console.print(fmsg_rotational)
+    console.print(msg_rmsd, style='bold white')
+    console.print(fmsg_rotational, style='bold white')
     
     for rotat_elements in rotat_mtx: 
         np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
         print(str(rotat_elements).replace(']', '').replace('[', ''), end=',\n')
     
-    console.print(fmsg_rotatedP)
+    console.print(msg_rotatedP, style='bold white')
     
     for rotat_elements in rotat_P_mtx: 
         np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
@@ -57,9 +56,9 @@ def output_onlyRMSD(rmsd):
     msg_rmsd = """
     - RMSD = {}
     """.format(rmsd)
-    console.print(result_msg, soft_wrap=False)
+    console.print(result_msg, style='bold white', soft_wrap=False)
     console.rule('[bold cyan]Results')
-    console.print(msg_rmsd)
+    console.print(msg_rmsd, style='bold white')
 
     
 def output_onlyKabsch(rotat_mtx, rotat_P_mtx):
