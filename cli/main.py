@@ -3,7 +3,6 @@ import numpy as np
 import rich_click as click 
 from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
-#TODO: make inputFiles() text prettier; 
 
 click.rich_click.USE_MARKDOWN = True
 
@@ -17,9 +16,9 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
     """
     # COORDINATES ANALYZER
     
-    Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm. However, you can specify the type of calculation using the options.
+    **Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm. However, you can specify the type of calculation using the options.**
     
-    If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).
+    **If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).**
     
     > Mathematical Methods: 
     > - Root-Mean-Square Deviation;
