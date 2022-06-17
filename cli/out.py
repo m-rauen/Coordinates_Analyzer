@@ -49,10 +49,11 @@ def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
         print(str(rotat_elements).replace(']', '').replace('[', ''), end=',\n')
 
 
-def output_onlyRMSD(rmsd):
+def output_onlyRMSD(rmsd1, rmsd2):
     msg_rmsd = """
-    - RMSD = {}
-    """.format(rmsd)
+    - RMSD 1= {}
+    - RMSD 2= {}
+    """.format(rmsd1, rmsd2)
     console.print(result_msg, style='bold white', soft_wrap=False)
     console.rule('[bold cyan]Results')
     console.print(msg_rmsd, style='bold white')
