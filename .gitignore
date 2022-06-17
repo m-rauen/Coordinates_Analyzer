@@ -67,8 +67,9 @@ ENV/
 env.bak/
 venv.bak/
 
-# .xyz files 
+# Text and coordinates files
 *.xyz 
+*.txt
 
 # Build dir 
 build/ 
@@ -77,5 +78,3 @@ build/
 *.egg
 *.egg-info
 
-# Dependencies
-*.txt
