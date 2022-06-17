@@ -34,7 +34,7 @@ def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
     
     console.print(result_msg)
     console.rule('[bold cyan]Results')
-    console.print(fmsg_rmsd)
+    console.print(msg_rmsd)
     console.print(msg_rotational, style='bold white')
     
     

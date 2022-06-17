@@ -1,6 +1,6 @@
 import numpy as np
 import inspect 
-from sklearn.metrics import mean_squared_error
+# from sklearn.metrics import mean_squared_error
 from cli.out import output_onlyRMSD, output_onlyKabsch, output_fullResults
 
 #TODO: atomic labels -> dictionary for the final matrices;
@@ -8,11 +8,12 @@ from cli.out import output_onlyRMSD, output_onlyKabsch, output_fullResults
 
 def calculateRMSD(matrix_P, matrix_Q): 
     if inspect.stack()[1][3] == 'inputFiles':
-        result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+        result = round(np.sqrt(np.sum((matrix_P - matrix_Q) ** 2) / len(matrix_P)), 4)
+        # result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
         output_onlyRMSD(result)
-    elif inspect.stack()[1][3] == 'fullCalculation':
-        result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
-        return result
+    # elif inspect.stack()[1][3] == 'fullCalculation':
+        # result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
+        # return result
     # else: 
     #     print('bugou')
 
