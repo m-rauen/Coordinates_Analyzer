@@ -2,7 +2,6 @@ import numpy as np
 import inspect 
 from cli.out import output_onlyRMSD, output_onlyKabsch, output_fullResults
 
-#TODO: atomic labels -> dictionary for the final matrices;
 
 def calculateRMSD(matrix_P, matrix_Q): 
     if inspect.stack()[1][3] == 'inputFiles':
