@@ -15,8 +15,7 @@ setup(
                         'numpy',
                         'sklearn', 
                         'rich',
-                        'rich_click',
-                        'inspect'],
+                        'rich_click'],
     entry_points = {
         'console_scripts': [
             'coords-analyze=cli.main:inputFiles',
