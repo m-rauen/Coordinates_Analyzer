@@ -1,24 +1,17 @@
 import numpy as np
 import inspect 
-from sklearn.metrics import mean_squared_error
 from cli.out import output_onlyRMSD, output_onlyKabsch, output_fullResults
 
 #TODO: atomic labels -> dictionary for the final matrices;
-#TODO: calculateRMSD() done by hand, eliminating 1 BIG dependency 
 
 def calculateRMSD(matrix_P, matrix_Q): 
     if inspect.stack()[1][3] == 'inputFiles':
-        # result1 = round(np.sqrt(np.sum((matrix_P - matrix_Q) ** 2) / len(matrix_P)), 4)
-        # result1 = round((np.sqrt(((((matrix_P - matrix_Q)** 2))*3).mean())),4)
-        result1 = np.sqrt(np.mean((matrix_P - matrix_Q) ** 2))
-        result2 = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
-        output_onlyRMSD(result1, result2)
-    # elif inspect.stack()[1][3] == 'fullCalculation':
-        # result = round(mean_squared_error(matrix_P, matrix_Q, squared=False), 4)
-        # return result
-    # else: 
-    #     print('bugou')
-
+        result = round(np.sqrt(np.mean((matrix_P - matrix_Q) ** 2)), 4)
+        output_onlyRMSD(result)
+    elif inspect.stack()[1][3] == 'fullCalculation':
+        result = round(np.sqrt(np.mean((matrix_P - matrix_Q) ** 2)), 4)
+        return result
+    
     
 def calculateKabsch(matrix_P, matrix_Q): 
     if inspect.stack()[1][3] == 'inputFiles':
@@ -76,9 +69,6 @@ def calculateKabsch(matrix_P, matrix_Q):
         rot_matrixP = matrix_R * matrix_P 
         
         return matrix_R, rot_matrixP
-    
-    # else: 
-    #     print('bugou')
 
     
 def fullCalculation(matrix_P, matrix_Q): 

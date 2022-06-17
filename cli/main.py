@@ -9,10 +9,9 @@ click.rich_click.USE_MARKDOWN = True
 @click.command()
 @click.argument('fname1', type=click.File('r'))        
 @click.argument('fname2', type=click.File('r'))
-@click.option('--full', is_flag=True, help='Run and print full calculation (RMSD + Kabsch)', default=True)
 @click.option('--rmsd',is_flag=True, help='Run and print only RMSD result', default=False)
 @click.option('--kabsch', is_flag=True, help='Run and print only Kabsch algorithm results', default=False)
-def inputFiles(fname1, fname2, rmsd, kabsch, full): 
+def inputFiles(fname1, fname2, rmsd, kabsch): 
     """
     # COORDINATES ANALYZER
     
@@ -34,7 +33,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch, full):
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
         calculateKabsch(f_matrix1, f_matrix2)
-    elif full: 
+    else: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
