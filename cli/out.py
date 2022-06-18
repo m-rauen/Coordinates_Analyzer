@@ -56,7 +56,7 @@ def output_onlyRMSD(rmsd):
     msg_rmsd = """
     - RMSD = {}
     """.format(rmsd)
-    console.print(result_msg, style='white', soft_wrap=False)
+    console.print(result_msg, style='dim', soft_wrap=False)
     console.print('\n')
     console.rule('[cyan]Results')
     console.print(msg_rmsd, style='bold white')

@@ -1,4 +1,3 @@
-from multiprocessing.sharedctypes import Value
 import click 
 import numpy as np
 import rich_click as click 
@@ -6,6 +5,10 @@ from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
 
 click.rich_click.USE_MARKDOWN = True
+click.rich_click.STYLE_ERRORS_SUGGESTION = "blue italic"
+click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
+click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n"
+
 
 @click.command()
 @click.argument('fname1', type=click.File('r'))        
@@ -20,9 +23,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
     
     **If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).**
     
-    > Mathematical Methods: 
-    > - Root-Mean-Square Deviation;
-    > - Kabsch algorithm.
+    
     """
     if rmsd: 
         line1, line2 = treatEntry(fname1, fname2)
@@ -53,14 +54,12 @@ def treatEntry(filename1, filename2):
         for line in second_pointer.strip().split():
             lines2.append(line)
 
-    try:
-        if len(lines1) != len(lines2):
-            raise Exception
-        else:
-            return lines1, lines2
-    except Exception:
-        print("The length of the coordinates aren't the same.\n"
-              "Please, check your xyz files!.")
+    if len(lines1) != len(lines2):
+        msg_exception = ("The length of the coordinates aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.ClickException(msg_exception)
+    else:
+        return lines1, lines2
     
 
 def separator(list1 = [], list2 = []): 
@@ -82,15 +81,13 @@ def separator(list1 = [], list2 = []):
             atom2.append(atoms2_pointer)
         elif atoms2_pointer.isalpha() == False:
             coord2.append(atoms2_pointer)
-            
-    try:
-        if (atom1[0] != atom2[0]):
-            raise ValueError
-        else:
-            return atom1, coord1, atom2, coord2        
-    except ValueError:
-        print("The atoms order aren't the same.\n"
-              "Please, check your xyz files!.")     
+
+    if (atom1[0] != atom2[0]):
+        msg_usgerror = ("The atoms order aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.UsageError(message=msg_usgerror)
+    else:
+        return atom1, coord1, atom2, coord2        
     
 
 def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
