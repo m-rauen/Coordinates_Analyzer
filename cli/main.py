@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import click 
 import numpy as np
 import rich_click as click 
@@ -38,7 +39,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
         fullCalculation(f_matrix1, f_matrix2)
-         
+
 
 def treatEntry(filename1, filename2):
     #Treat lines (separate) of both arrays
@@ -52,7 +53,15 @@ def treatEntry(filename1, filename2):
         for line in second_pointer.strip().split():
             lines2.append(line)
 
-    return lines1, lines2
+    try:
+        if len(lines1) != len(lines2):
+            raise Exception
+        else:
+            return lines1, lines2
+    except Exception:
+        print("The length of the coordinates aren't the same.\n"
+              "Please, check your xyz files!.")
+    
 
 def separator(list1 = [], list2 = []): 
     #Distinguish atoms from coordinates in both separated arrays
@@ -73,8 +82,16 @@ def separator(list1 = [], list2 = []):
             atom2.append(atoms2_pointer)
         elif atoms2_pointer.isalpha() == False:
             coord2.append(atoms2_pointer)
-     
-    return atom1, coord1, atom2, coord2
+            
+    try:
+        if (atom1[0] != atom2[0]):
+            raise ValueError
+        else:
+            return atom1, coord1, atom2, coord2        
+    except ValueError:
+        print("The atoms order aren't the same.\n"
+              "Please, check your xyz files!.")     
+    
 
 def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
     #Convert to float and transform array to matrix 
