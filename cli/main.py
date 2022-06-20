@@ -5,7 +5,7 @@ from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
 
 click.rich_click.USE_MARKDOWN = True
-click.rich_click.STYLE_ERRORS_SUGGESTION = "blue italic"
+click.rich_click.STYLE_ERRORS_SUGGESTION = "cyan italic"
 click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
 click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n"
 
@@ -83,6 +83,14 @@ def separator(list1 = [], list2 = []):
             coord2.append(atoms2_pointer)
 
     if (atom1[0] != atom2[0]):
+        msg_usgerror = ("The atoms order aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.UsageError(message=msg_usgerror)
+    elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
+        msg_usgerror = ("The atoms order aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.UsageError(message=msg_usgerror)
+    elif (atom1[0] == atom2[0]) and(atom1[2] != atom2[2]):
         msg_usgerror = ("The atoms order aren't the same.\n"
                         "Please, check your xyz files!")
         raise click.UsageError(message=msg_usgerror)
