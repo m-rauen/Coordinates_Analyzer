@@ -38,7 +38,7 @@ def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
     console.print('\n')
     console.rule('[cyan]Results')
     console.print(msg_rmsd)
-    console.print(msg_rotational, style='grey')
+    console.print(msg_rotational, style='dim')
     
     
     for rotat_elements in rotat_mtx: 

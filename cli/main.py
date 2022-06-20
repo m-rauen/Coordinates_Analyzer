@@ -28,17 +28,17 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
     if rmsd: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
-        f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
+        f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         calculateRMSD(f_matrix1, f_matrix2)
     elif kabsch:
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
-        f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
+        f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         calculateKabsch(f_matrix1, f_matrix2)
     else: 
         line1, line2 = treatEntry(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
-        f_matrix1, f_matrix2 = formatXYZ(coords1, coords2, atoms1, atoms2)
+        f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         fullCalculation(f_matrix1, f_matrix2)
 
 
@@ -98,7 +98,7 @@ def separator(list1 = [], list2 = []):
         return atom1, coord1, atom2, coord2        
     
 
-def formatXYZ(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
+def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
     #Convert to float and transform array to matrix 
     mtx1 = np.array(arr_coords1, dtype='float64')
     mtx2 = np.array(arr_coords2, dtype='float64')
