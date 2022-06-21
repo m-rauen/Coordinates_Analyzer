@@ -19,7 +19,8 @@ result_msg = Markdown(msg)
 def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
     msg_rmsd = """
     Root-Mean-Square Deviation:
-    """
+    RMSD = {}
+    """.format(rmsd)
     
     msg_rotational = """
     Rotational Matrix:

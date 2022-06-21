@@ -5,7 +5,7 @@ from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
 
 
 click.rich_click.USE_MARKDOWN = True
-click.rich_click.STYLE_ERRORS_SUGGESTION = "cyan italic"
+click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan italic"
 click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
 click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n"
 
