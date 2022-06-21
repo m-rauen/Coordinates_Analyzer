@@ -90,7 +90,7 @@ def separator(list1 = [], list2 = []):
         msg_usgerror = ("The atoms order aren't the same.\n"
                         "Please, check your xyz files!")
         raise click.UsageError(message=msg_usgerror)
-    elif (atom1[0] == atom2[0]) and(atom1[2] != atom2[2]):
+    elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
         msg_usgerror = ("The atoms order aren't the same.\n"
                         "Please, check your xyz files!")
         raise click.UsageError(message=msg_usgerror)
