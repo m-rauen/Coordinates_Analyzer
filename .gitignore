@@ -71,7 +71,8 @@ venv.bak/
 *.xyz 
 *.txt
 
-# Build dir 
+# Unnecessary dirs
+opt-test/
 build/ 
 
 # egg-info
