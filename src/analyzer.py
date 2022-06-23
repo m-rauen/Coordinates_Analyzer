@@ -19,25 +19,29 @@ def calculateKabsch(matrix_P, matrix_Q):
         centroid2 = np.mean(matrix_Q, axis=0) 
         
         #Translate both matrices to the center (0,0,0)
-        trans_matrixP = matrix_P -  np.tile(centroid1, (3,1)) 
-        trans_matrixQ = matrix_Q - np.tile(centroid2, (3,1))
+        trans_matrixP = matrix_P -  np.tile(centroid1, (len(matrix_P),1)) 
+        trans_matrixQ = matrix_Q - np.tile(centroid2, (len(matrix_Q),1))
         
         #Generate the covariance matrix
-        matrix_H = (np.transpose(trans_matrixQ)) * trans_matrixP
+        matrix_H = np.matmul((np.transpose(trans_matrixQ)), matrix_P)
         
         #Calculate the SVD of the covariance matrix
-        matrix_U, matrix_S, matrix_Vh = np.linalg.svd(matrix_H) 
+        matrix_U, matrix_S, matrix_Vt = np.linalg.svd(matrix_H) 
         
         #Check for special reflection case in the covariance matrix
         #Then, based on the answer, calculate the proper rotation matrix
-        if np.linalg.det(matrix_Vh * (np.transpose(matrix_U))) < 0: 
-            counter_identitiy = np.array([[1,0,0], [0,1,0], [0,0,-1]])
-            matrix_R = (np.transpose(matrix_U)) * counter_identitiy * matrix_Vh
+        if np.linalg.det(np.matmul(matrix_Vt, (np.transpose(matrix_U)))) < 0: 
+            counter_identitiy = np.identity(len(matrix_Vt))
+            matrix_Vt = np.matmul(counter_identitiy, matrix_Vt)
+            matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
+            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
         else:   
-            matrix_R = (np.transpose(matrix_U)) * matrix_Vh
+            matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
+            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
             
         #Finally, calculate the rotated P matrix 
-        rot_matrixP = matrix_R * matrix_P 
+        rot_matrixP = np.matmul(matrix_P, matrix_R)
+        #rot_matrixP = matrix_R * matrix_P 
         
         output_onlyKabsch(matrix_R, rot_matrixP)
         
@@ -47,25 +51,29 @@ def calculateKabsch(matrix_P, matrix_Q):
         centroid2 = np.mean(matrix_Q, axis=0) 
         
         #Translate both matrices to the center (0,0,0)
-        trans_matrixP = matrix_P -  np.tile(centroid1, (3,1)) 
-        trans_matrixQ = matrix_Q - np.tile(centroid2, (3,1))
+        trans_matrixP = matrix_P -  np.tile(centroid1, (len(matrix_P),1)) 
+        trans_matrixQ = matrix_Q - np.tile(centroid2, (len(matrix_Q),1))
         
         #Generate the covariance matrix
-        matrix_H = (np.transpose(trans_matrixQ)) * trans_matrixP
+        matrix_H = np.matmul((np.transpose(trans_matrixQ)), matrix_P)
         
         #Calculate the SVD of the covariance matrix
-        matrix_U, matrix_S, matrix_Vh = np.linalg.svd(matrix_H) 
+        matrix_U, matrix_S, matrix_Vt = np.linalg.svd(matrix_H) 
         
         #Check for special reflection case in the covariance matrix
         #Then, based on the answer, calculate the proper rotation matrix
-        if np.linalg.det(matrix_Vh * (np.transpose(matrix_U))) < 0: 
-            counter_identitiy = np.array([[1,0,0], [0,1,0], [0,0,-1]])
-            matrix_R = (np.transpose(matrix_U)) * counter_identitiy * matrix_Vh
+        if np.linalg.det(np.matmul(matrix_Vt, (np.transpose(matrix_U)))) < 0: 
+            counter_identitiy = np.identity(len(matrix_Vt))
+            matrix_Vt = np.matmul(counter_identitiy, matrix_Vt)
+            matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
+            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
         else:   
-            matrix_R = (np.transpose(matrix_U)) * matrix_Vh
+            matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
+            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
             
         #Finally, calculate the rotated P matrix 
-        rot_matrixP = matrix_R * matrix_P 
+        rot_matrixP = np.matmul(matrix_P, matrix_R)
+        #rot_matrixP = matrix_R * matrix_P 
         
         return matrix_R, rot_matrixP
 
