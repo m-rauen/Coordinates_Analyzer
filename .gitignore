@@ -74,6 +74,7 @@ venv.bak/
 # Unnecessary dirs
 opt-test/
 build/ 
+xyz-tests/
 
 # egg-info
 *.egg

@@ -34,14 +34,12 @@ def calculateKabsch(matrix_P, matrix_Q):
             counter_identitiy = np.identity(len(matrix_Vt))
             matrix_Vt = np.matmul(counter_identitiy, matrix_Vt)
             matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
-            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
         else:   
             matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
-            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
             
         #Finally, calculate the rotated P matrix 
         rot_matrixP = np.matmul(matrix_P, matrix_R)
-        #rot_matrixP = matrix_R * matrix_P 
+        
         
         output_onlyKabsch(matrix_R, rot_matrixP)
         
@@ -66,15 +64,13 @@ def calculateKabsch(matrix_P, matrix_Q):
             counter_identitiy = np.identity(len(matrix_Vt))
             matrix_Vt = np.matmul(counter_identitiy, matrix_Vt)
             matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
-            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
         else:   
             matrix_R = np.matmul((np.transpose(matrix_U)), matrix_Vt)
-            #matrix_R = (np.transpose(matrix_U)) * matrix_Vt
             
         #Finally, calculate the rotated P matrix 
         rot_matrixP = np.matmul(matrix_P, matrix_R)
-        #rot_matrixP = matrix_R * matrix_P 
         
+
         return matrix_R, rot_matrixP
 
     
