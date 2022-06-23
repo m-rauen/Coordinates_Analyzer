@@ -1,4 +1,5 @@
 import click 
+import inspect
 import numpy as np
 import rich_click as click 
 from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
@@ -103,8 +104,13 @@ def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 =
     #Convert to float and transform array to matrix 
     mtx1 = np.array(arr_coords1, dtype='float64')
     mtx2 = np.array(arr_coords2, dtype='float64')
-    matrix1 = np.asmatrix(mtx1)
-    matrix2 = np.asmatrix(mtx2)
+    if (len(mtx1) != len(mtx2)):
+        msg_exception = ("The length of the coordinates aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.ClickException(msg_exception)
+    else:
+        matrix1 = np.asmatrix(mtx1)
+        matrix2 = np.asmatrix(mtx2)
     
     #Create the shape and generate both matrices
     row_mtx1 = len(arr_atoms1)
@@ -114,7 +120,9 @@ def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 =
     matrix1 = mtx1.reshape(shape_mtx1)
     matrix2 = mtx2.reshape(shape_mtx2)
     
-    return matrix1, matrix2
+    print(str(inspect.stack()[1][3]))
+    # return matrix1, matrix2
+    
     
 
 if __name__ == '__main__':

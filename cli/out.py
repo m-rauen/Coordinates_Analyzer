@@ -28,7 +28,6 @@ def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
     output_P_rotated.write(str(len(rotat_P_mtx)) + '\n')
     output_rotationalMtx.write('RMSD = ' + str(rmsd) + '\n')
     for rotatedp_elemnts in rotat_P_mtx:
-        output_P_rotated.write(c[rotatedp_elemnts] + '   ')
         output_P_rotated.write(str(rotatedp_elemnts).replace('[','').replace(']',''))
         output_P_rotated.write('\n')
 
