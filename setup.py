@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name = 'coordinates-analyzer',
-    version = '1.4.0',
+    version = '1.5.0',
     description = 'A Python CLI program that mathematically compare 2 different molecular structures (.xyz file), based on their atomic coordinates.',
     long_description = './README.md',
     license = './LICENSE',
