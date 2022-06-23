@@ -7,7 +7,7 @@ console = Console()
 title = """ # COORDINATES ANALYZER"""
 msg = """
 
-    **Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm, on a external .xyz file generated. However, you can specify the type of calculation using the options.**
+    Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm, on a external .xyz file generated. However, you can specify the type of calculation using the options.
     
 
     If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).
@@ -17,18 +17,19 @@ result_title = Markdown(title)
 result_msg = Markdown(msg)
 
 def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx):
-    output_rotationalMtx = open('rotatioanl_matrix.xyz', 'w')
+    output_rotationalMtx = open('rotation_matrix.xyz', 'w')
     output_rotationalMtx.write(str(len(rotat_mtx)) + '\n')
     output_rotationalMtx.write('RMSD = ' + str(rmsd) + '\n')
-    for rotat_elements in rotat_mtx: 
-        output_rotationalMtx.write(str(rotat_elements).replace('[','').replace(']',''))
+    for rotation_elemnts in rotat_mtx: 
+        output_rotationalMtx.write(str(rotation_elemnts).replace('[','').replace(']',''))
         output_rotationalMtx.write('\n')
-        
+    
     output_P_rotated = open('P_rotated.xyz', 'w')
     output_P_rotated.write(str(len(rotat_P_mtx)) + '\n')
     output_rotationalMtx.write('RMSD = ' + str(rmsd) + '\n')
-    for protated_elements in rotat_P_mtx:
-        output_P_rotated.write(str(protated_elements).replace('[','').replace(']',''))
+    for rotatedp_elemnts in rotat_P_mtx:
+        output_P_rotated.write(c[rotatedp_elemnts] + '   ')
+        output_P_rotated.write(str(rotatedp_elemnts).replace('[','').replace(']',''))
         output_P_rotated.write('\n')
 
 

@@ -74,10 +74,10 @@ def calculateKabsch(matrix_P, matrix_Q):
         return matrix_R, rot_matrixP
 
     
-def fullCalculation(matrix_P, matrix_Q): 
+def fullCalculation(matrix_P, matrix_Q, atoms): 
     rmsd = calculateRMSD(matrix_P, matrix_Q)
     matrix_R, rot_matrixP = calculateKabsch(matrix_P, matrix_Q)
-    output_fullResults(rmsd, matrix_R, rot_matrixP)
+    output_fullResults(rmsd, matrix_R, rot_matrixP, atoms)
     
     
     

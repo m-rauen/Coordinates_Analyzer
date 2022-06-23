@@ -40,6 +40,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
         atoms1, coords1, atoms2, coords2 = separator(line1, line2) 
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         fullCalculation(f_matrix1, f_matrix2)
+        
 
 
 def treatEntry(filename1, filename2):
