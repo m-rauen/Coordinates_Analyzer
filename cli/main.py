@@ -32,15 +32,22 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         calculateRMSD(f_matrix1, f_matrix2)
     elif kabsch:
+        arr_label_atoms = []
         line1, line2 = treat_xyz(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
+        for c in atoms1:
+            arr_label_atoms.append(c)
+        # print(arr_label_atoms)
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
-        calculateKabsch(f_matrix1, f_matrix2, atoms)
+        calculateKabsch(f_matrix1, f_matrix2, arr_label_atoms)
     else: 
         line1, line2 = treat_xyz(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
+        for c in atoms1:
+            arr_label_atoms.append(c)
+        #print(arr_label_atoms)
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
-        fullCalculation(f_matrix1, f_matrix2, atoms)
+        fullCalculation(f_matrix1, f_matrix2, arr_label_atoms)
         
 
 
@@ -65,8 +72,7 @@ def treat_xyz(filename1, filename2):
     
 
 def separate_xyz(list1 = [], list2 = []): 
-    #Distinguish atoms from coordinates in both separated arrays
-    #Create a list for atoms, and, a list for atomic coordinates
+    #Distinguish atoms labels from coordinates in both separated arrays
     atom1 = []
     atom2 = []
     coord1 = []

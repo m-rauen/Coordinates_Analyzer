@@ -50,16 +50,6 @@ def output_onlyKabsch(rotat_mtx, rotat_P_mtx):
         out_rotationMtx.write(str(rotation_elemnts).replace('[','').replace(']',''))
         out_rotationMtx.write('\n')
     
-    # msg_kabsch = """
-    # - Rotation Matrix: 
-    # """
-    # console.print(result_msg, soft_wrap=False)
-    # console.print('\n')
-    # result_rule = console.rule('[bold blue] Results')
-    # console.print(msg_kabsch)
-    # np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
-    # print('\n {} \n'
-    #       .format(np.matrix(rotat_mtx)))
     
     # for rotat_elements in rotat_mtx: 
     #     np.set_printoptions(precision=4, formatter={'float': '{:.4f}'.format})
