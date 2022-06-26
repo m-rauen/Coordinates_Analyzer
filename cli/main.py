@@ -20,7 +20,7 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
     """
     # COORDINATES ANALYZER
     
-    **Python CLI program that mathematically compare 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm, on a external .xyz file generated. However, you can specify the type of calculation using the options.**
+    **Python CLI program that mathematically compares 2 different molecular structures based on their atomic coordinates. By default the program runs and print the full calculation, i.e. RMSD and Kabsch algorithm, on a external .xyz file generated. However, you can specify the type of calculation using the options.**
     
     **If you are interested in the source code, you can find it on my [**Github**](https://github.com/m-rauen/Coordinates_Analyzer).**
     
@@ -35,12 +35,12 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
         line1, line2 = treat_xyz(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
-        calculateKabsch(f_matrix1, f_matrix2)
+        calculateKabsch(f_matrix1, f_matrix2, atoms)
     else: 
         line1, line2 = treat_xyz(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
-        fullCalculation(f_matrix1, f_matrix2)
+        fullCalculation(f_matrix1, f_matrix2, atoms)
         
 
 
@@ -104,24 +104,23 @@ def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 =
     #Convert to float and transform array to matrix 
     mtx1 = np.array(arr_coords1, dtype='float64')
     mtx2 = np.array(arr_coords2, dtype='float64')
-    if (len(mtx1) != len(mtx2)):
-        msg_exception = ("The length of the coordinates aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.ClickException(msg_exception)
-    else:
-        matrix1 = np.asmatrix(mtx1)
-        matrix2 = np.asmatrix(mtx2)
+    matrix1 = np.asmatrix(mtx1)
+    matrix2 = np.asmatrix(mtx2)
     
     #Create the shape and generate both matrices
     row_mtx1 = len(arr_atoms1)
     row_mtx2 = len(arr_atoms2)
-    shape_mtx1 = (row_mtx1, 3)
-    shape_mtx2 = (row_mtx2, 3) 
-    matrix1 = mtx1.reshape(shape_mtx1)
-    matrix2 = mtx2.reshape(shape_mtx2)
+    if (row_mtx1) != (row_mtx2):
+        msg_exception = ("The length of the coordinates aren't the same.\n"
+                        "Please, check your xyz files!")
+        raise click.ClickException(msg_exception)
+    else:
+        shape_mtx1 = (row_mtx1, 3)
+        shape_mtx2 = (row_mtx2, 3) 
+        matrix1 = mtx1.reshape(shape_mtx1)
+        matrix2 = mtx2.reshape(shape_mtx2)
     
-    print(str(inspect.stack()[1][3]))
-    # return matrix1, matrix2
+    return matrix1, matrix2
     
     
 
