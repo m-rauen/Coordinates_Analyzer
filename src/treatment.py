@@ -1,5 +1,5 @@
 import numpy as np
-from exceptions import *
+from error.exceptions import *
 
 def treat_xyz(filename1, filename2):
     #Treat lines (separate) of both arrays
