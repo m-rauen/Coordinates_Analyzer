@@ -3,6 +3,7 @@ import inspect
 import numpy as np
 import rich_click as click 
 from src.analyzer import calculateRMSD, calculateKabsch, fullCalculation
+from src.exceptions import length_exception, atoms_exception, mtxrow_exception
 
 
 click.rich_click.USE_MARKDOWN = True
@@ -64,9 +65,7 @@ def treat_xyz(filename1, filename2):
             lines2.append(line)
 
     if len(lines1) != len(lines2):
-        msg_exception = ("The length of the coordinates aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.ClickException(msg_exception)
+        length_exception()
     else:
         return lines1, lines2
     
@@ -91,17 +90,11 @@ def separate_xyz(list1 = [], list2 = []):
             coord2.append(atoms2_pointer)
 
     if (atom1[0] != atom2[0]):
-        msg_usgerror = ("The atoms order aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.UsageError(message=msg_usgerror)
+        atoms_exception()
     elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
-        msg_usgerror = ("The atoms order aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.UsageError(message=msg_usgerror)
+        atoms_exception()
     elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
-        msg_usgerror = ("The atoms order aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.UsageError(message=msg_usgerror)
+        atoms_exception()
     else:
         return atom1, coord1, atom2, coord2        
     
@@ -117,9 +110,7 @@ def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 =
     row_mtx1 = len(arr_atoms1)
     row_mtx2 = len(arr_atoms2)
     if (row_mtx1) != (row_mtx2):
-        msg_exception = ("The length of the coordinates aren't the same.\n"
-                        "Please, check your xyz files!")
-        raise click.ClickException(msg_exception)
+        mtxrow_exception()
     else:
         shape_mtx1 = (row_mtx1, 3)
         shape_mtx2 = (row_mtx2, 3) 
