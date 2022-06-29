@@ -5,15 +5,7 @@ from src.treatment import *
 from error.exceptions import *
 
 
-# click.rich_click.USE_MARKDOWN = True
-# click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan"
-# click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
-# click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n" 
-
 click.rich_click.USE_MARKDOWN = True
-click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan"
-click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
-click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n"
 
 
 @click.command()
@@ -42,15 +34,14 @@ def inputFiles(fname1, fname2, rmsd, kabsch):
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
         for c in atoms1:
             arr_label_atoms.append(c)
-        # print(arr_label_atoms)
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         calculateKabsch(f_matrix1, f_matrix2, arr_label_atoms)
     else: 
+        arr_label_atoms = []
         line1, line2 = treat_xyz(fname1, fname2)
         atoms1, coords1, atoms2, coords2 = separate_xyz(line1, line2) 
         for c in atoms1:
             arr_label_atoms.append(c)
-        #print(arr_label_atoms)
         f_matrix1, f_matrix2 = format_xyz(coords1, coords2, atoms1, atoms2)
         fullCalculation(f_matrix1, f_matrix2, arr_label_atoms)
        

@@ -12,7 +12,7 @@ def calculateRMSD(matrix_P, matrix_Q):
         return result
     
     
-def calculateKabsch(matrix_P, matrix_Q): 
+def calculateKabsch(matrix_P, matrix_Q, atoms): 
     if inspect.stack()[1][3] == 'inputFiles':
         #Calculate centroids to align coordinates at the center
         centroid1 = np.mean(matrix_P, axis=0)
@@ -41,7 +41,7 @@ def calculateKabsch(matrix_P, matrix_Q):
         rot_matrixP = np.matmul(matrix_P, matrix_R)
         
         
-        output_onlyKabsch(matrix_R, rot_matrixP)
+        output_onlyKabsch(matrix_R, rot_matrixP, atoms)
         
     elif inspect.stack()[1][3] == 'fullCalculation':
         #Calculate centroids to align coordinates at the center
