@@ -1,5 +1,8 @@
-import click
-#from cli.main import inputFiles
+import rich_click as click
+
+click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan"
+click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
+click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n"
 
 def length_exception():
     msg_exception = ("The length of the coordinates aren't the same.\n"

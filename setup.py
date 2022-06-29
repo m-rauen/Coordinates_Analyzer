@@ -11,8 +11,7 @@ setup(
     author_email = 'matheus.rauen@grad.ufsc.br',
     url='https://https://github.com/m-rauen/Coordinates_Analyzer',
     packages = find_packages(),
-    install_requires = ['Click',
-                        'numpy',
+    install_requires = ['numpy',
                         'rich',
                         'rich_click'],
     entry_points = {

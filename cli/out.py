@@ -1,4 +1,3 @@
-import numpy as np 
 from rich.console import Console
 from rich.markdown import Markdown
 

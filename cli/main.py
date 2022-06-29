@@ -1,11 +1,14 @@
-import click 
-import numpy as np
 import rich_click as click 
 
 from src.analyzer import *
 from src.treatment import *
 from error.exceptions import *
 
+
+# click.rich_click.USE_MARKDOWN = True
+# click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan"
+# click.rich_click.ERRORS_SUGGESTION = "\n Try running 'coords-analyze --help' for more detailed information.\n"
+# click.rich_click.ERRORS_EPILOGUE = "To find out more about the code, visit https://github.com/m-rauen/Coordinates_Analyzer\n" 
 
 click.rich_click.USE_MARKDOWN = True
 click.rich_click.STYLE_ERRORS_SUGGESTION = "bold cyan"
