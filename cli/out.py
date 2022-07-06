@@ -13,15 +13,8 @@ If you are interested in the source code, you can find it on my [**Github**](htt
 
 """
 
-kabsch_msg = """
-
-Rotation matrix generated at: 'rotation_matrix.xyz';\n
-Matrix P rotated into Q generated at: 'P_rotated.xyz'.
-"""
-
 result_title = Markdown(title)
 result_msg = Markdown(msg)
-#result_kabsch_msg = Markdown(kabsch_msg)
 
 def output_fullResults(rmsd, rotat_mtx, rotat_P_mtx, atoms):
     kabsch_msg = """
@@ -59,6 +52,10 @@ def output_onlyRMSD(rmsd):
 
     
 def output_onlyKabsch(rotat_mtx, rotat_P_mtx, atoms):
+    kabsch_msg = """
+    Rotation matrix generated at: 'rotation_matrix.xyz';\n
+    P matrix rotated into Q matrix generated at: 'P_rotated.xyz'.
+    """
     out_rotationMtx = open('rotation_matrix.xyz', 'w')
     out_rotationMtx.write(str(len(rotat_mtx)) + '\n')
     out_rotationMtx.write('No RMSD calculated to add here')
@@ -73,6 +70,10 @@ def output_onlyKabsch(rotat_mtx, rotat_P_mtx, atoms):
         out_P_rotated.write(str(atoms[rotatedp_elemnts]) + '    ')  
         out_P_rotated.write(str(rotat_P_mtx[rotatedp_elemnts]).replace('[','').replace(']',''))
         out_P_rotated.write('\n')
+        
+    console.print(result_title)
+    console.print(result_msg, style='bold dim', soft_wrap=False) 
+    console.print(kabsch_msg, style='bold white', soft_wrap=False)
     
     
         
