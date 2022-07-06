@@ -1,6 +1,12 @@
 import numpy as np
 from error.exceptions import *
 
+def convert_labels(full_arr):
+    atoms = []
+    coordinates = []
+    for c in full_arr:
+        
+
 def treat_xyz(filename1, filename2):
     #Treat lines (separate) of both arrays
     lines1 = [] 
@@ -30,22 +36,27 @@ def separate_xyz(list1 = [], list2 = []):
         if atoms1_pointer.isalpha() == True:
             atom1.append(atoms1_pointer)
         elif atoms1_pointer.isalpha() == False:
-            coord1.append(atoms1_pointer)
+            atom1.append(atoms1_pointer)
+            #coord1.append(atoms1_pointer)
+    #         #print(list1, end='\n')
+    #         print('ok')
+    # print(atoms1_pointer[0:], end='\n')
+    print(atom1)
             
-    for atoms2_pointer in list2:
-        if atoms2_pointer.isalpha() == True:
-            atom2.append(atoms2_pointer)
-        elif atoms2_pointer.isalpha() == False:
-            coord2.append(atoms2_pointer)
+    # for atoms2_pointer in list2:
+    #     if atoms2_pointer.isalpha() == True:
+    #         atom2.append(atoms2_pointer)
+    #     elif atoms2_pointer.isalpha() == False:
+    #         coord2.append(atoms2_pointer)
 
-    if (atom1[0] != atom2[0]):
-        atoms_exception()
-    elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
-        atoms_exception()
-    elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
-        atoms_exception()
-    else:
-        return atom1, coord1, atom2, coord2        
+    # if (atom1[0] != atom2[0]):
+    #     atoms_exception()
+    # elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
+    #     atoms_exception()
+    # elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
+    #     atoms_exception()
+    # else:
+    #     return atom1, coord1, atom2, coord2        
     
 
 def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
