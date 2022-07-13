@@ -124,17 +124,15 @@ def convert_labels(elements_nmbrs):
 }
     
     atoms = []
-    
-    for c in elements_nmbrs:
-        atoms.append(int(c)) 
         
-    for i in atomic_number.keys():
+    for i in atomic_number.values():
         for j in atoms:
-            if i == j:
-                print('deu boa')
+            if j == i:
+                atoms.append(atomic_number.get(j))
             else: 
                 print('bugou')
-                # atoms.append(i.values())
+    
+    print(atoms)
        
 
 def treat_xyz(filename1, filename2):
@@ -164,7 +162,6 @@ def separate_xyz(list1 = [], list2 = []):
     atoms1_numbers = []
     atoms2_numbers = []
     
-    # print(list1[:])
     
     for atoms1_pointer in list1:
         if atoms1_pointer.isalpha() == True:
