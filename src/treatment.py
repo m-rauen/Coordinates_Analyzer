@@ -135,9 +135,7 @@ def convert_labels(elements_nmbrs):
             else: 
                 print('bugou')
                 # atoms.append(i.values())
-    
-            
-        
+       
 
 def treat_xyz(filename1, filename2):
     #Treat lines (separate) of both arrays
@@ -174,36 +172,33 @@ def separate_xyz(list1 = [], list2 = []):
         elif atoms1_pointer.isalpha() == False:
             if atoms1_pointer.isdigit() == True:    
                 atoms1_numbers.append(atoms1_pointer)
-        else: 
-            coord1.append(atoms1_pointer)
+            else: 
+                coord1.append(atoms1_pointer)
     if len(atoms1_numbers) != 0:
         convert_labels(atoms1_numbers)
-    else: 
-        pass
+
     
             
-    # for atoms2_pointer in list2:
-    #     if atoms2_pointer.isalpha() == True:
-    #         atom2.append(atoms2_pointer)
-    #     elif atoms2_pointer.isalpha() == False:
-    #         if atoms2_pointer.isdigit() == True:
-    #             atoms2_numbers.append(atoms2_pointer)
-    #     else: 
-    #         coord2.append(atoms2_pointer)
-    # if len(atoms2_numbers) != 0:
-    #     atom2 = convert_labels(atoms2_numbers)
-    # else: 
-    #     pass
+    for atoms2_pointer in list2:
+        if atoms2_pointer.isalpha() == True:
+            atom2.append(atoms2_pointer)
+        elif atoms2_pointer.isalpha() == False:
+            if atoms2_pointer.isdigit() == True:
+                atoms2_numbers.append(atoms2_pointer)
+            else: 
+                coord2.append(atoms2_pointer)
+    if len(atoms2_numbers) != 0:
+        atom2 = convert_labels(atoms2_numbers)
 
 
-    # if (atom1[0] != atom2[0]):
-    #     atoms_exception()
-    # elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
-    #     atoms_exception()
-    # elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
-    #     atoms_exception()
-    # else:
-    #     return atom1, coord1, atom2, coord2        
+    if (atom1[0] != atom2[0]):
+        atoms_exception()
+    elif (atom1[0] == atom2[0]) and (atom1[1] != atom2[1]):
+        atoms_exception()
+    elif (atom1[0] == atom2[0]) and (atom1[1] == atom2[1]) and (atom1[2] != atom2[2]):
+        atoms_exception()
+    else:
+        return atom1, coord1, atom2, coord2
     
 
 def format_xyz(arr_coords1 = [], arr_coords2 = [], arr_atoms1 = [], arr_atoms2 = []):
