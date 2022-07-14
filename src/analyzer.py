@@ -14,7 +14,7 @@ def calculateRMSD(matrix_P, matrix_Q):
     
 def calculateKabsch(matrix_P, matrix_Q, atoms): 
     if inspect.stack()[1][3] == 'inputFiles':
-        #Calculate centroids to align coordinates at the center
+        #Calculate centroids (geometric centers) to align coordinates at the center
         centroid1 = np.mean(matrix_P, axis=0)
         centroid2 = np.mean(matrix_Q, axis=0) 
         
