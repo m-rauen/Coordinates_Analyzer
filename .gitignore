@@ -67,16 +67,5 @@ ENV/
 env.bak/
 venv.bak/
 
-# Text and coordinates files
-*.xyz 
-*.txt
 
-# Unnecessary dirs
-opt-test/
-build/ 
-xyz-tests/
-
-# egg-info
-*.egg
-*.egg-info
 
