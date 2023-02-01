@@ -1,12 +1,11 @@
 from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-from components.layout import create_layout
+from components.layouts import *
 
 
 def main():
     app = Dash(
         external_stylesheets=[
-            dbc.themes.BOOTSTRAP
+            MAIN_THEME
         ]
     )
     app.title = 'Coordinates Analyzer'
