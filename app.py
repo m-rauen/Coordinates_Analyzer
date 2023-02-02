@@ -1,13 +1,15 @@
 from dash import Dash, html, dcc
-from components.layouts import *
+import dash_bootstrap_components as dbc
+from src.components.layout import *
+
 
 
 def main():
     app = Dash(
-        external_stylesheets=[
-            MAIN_THEME
-        ]
+        __name__, 
+        #external_stylesheets=[MAIN_THEME]
     )
+    app.scripts.config.serve_locally = False
     app.title = 'Coordinates Analyzer'
     app.layout = create_layout(app)
     app.run()
