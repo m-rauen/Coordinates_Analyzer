@@ -7,7 +7,7 @@ from src.components.layout import *
 def main():
     app = Dash(
         __name__, 
-        #external_stylesheets=[MAIN_THEME]
+        external_stylesheets=[dbc.themes.BOOTSTRAP]
     )
     app.scripts.config.serve_locally = False
     app.title = 'Coordinates Analyzer'
