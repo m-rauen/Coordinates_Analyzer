@@ -4,7 +4,7 @@
 
 ---
 
-Coordinates Analyzer is a **(working in progress)**...
+Coordinates Analyzer is a **working in progress** Python web application, that, intends to compare and calculate the mathematical difference between two sets of atomic coordinates.
 
 
 
